@@ -1,20 +1,58 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+<ion-content *ngIf="!abierta">
+
+  <ion-toolbar class="ion-no-border toolB" style="position: relative; z-index: 9999; left: 0; top: 0;" >
+    <div class="tool">
+      <button style="background:transparent; z-index: 1000;" (click)="logOut()">
+        <ion-icon name="arrow-undo-outline"  class="iconSalir"></ion-icon>
+      </button>
+      <h1 class="h1Tool">{{this.userAuth?.email}}</h1>
+    </div>
   </ion-toolbar>
-</ion-header>
+  <!-- <ion-button  (click)="startScan()" >
+    Escanear
+  </ion-button> -->
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- <ion-button [disabled]="this.puntosACargar === 0 && this.codigoACargar === ''" (click)="asignarPuntos(this.puntosACargar, this.codigoACargar)" >
+    Asignar
+  </ion-button> -->
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="contenedorLabels">
+    <div class="label">
+      <label>Crédito disponible: ${{this.credito}}</label>
+    </div>
+    <div class="label">
+      <label>Crédito a asignar: ${{this.puntosACargar}}</label>
+    </div>
   </div>
+
+  <div style="width: 100%; height: auto; justify-content: center; align-items: center; display: flex;">
+    <ion-button class="limpiar" (click)="borrarPuntos()" >
+      Limpiar
+    </ion-button>
+  </div>
+
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="start">
+    <ion-fab-button (click)="startScan()" >
+      <ion-icon name="qr-code-outline"></ion-icon>    
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button [disabled]="this.puntosACargar === 0 && this.codigoACargar === ''" (click)="asignarPuntos(this.puntosACargar, this.codigoACargar)" >
+      <ion-icon name="add-outline"></ion-icon>    
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="center" *ngIf="abierta">
+  <ion-fab-button (click)="stopScan(); abierta = false;">
+    <ion-icon name="arrow-undo-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div *ngIf="mostrarSpinner" class="spinner-container">
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <img class="spinner image-spinner" src="assets/logo.png">
+  </div>
+</div>

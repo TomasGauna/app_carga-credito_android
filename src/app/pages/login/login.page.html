@@ -1,0 +1,36 @@
+<ion-content [fullscreen]="true">
+ 
+    <h1>Iniciar Sesión</h1>
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+      <img width="30%" src="assets/logo.png">
+    </div>
+    <div class="contenedor">
+      <ion-input class="inputLog" label="Correo electrónico" label-placement="floating" fill="outline" [(ngModel)]="correo" name="email"></ion-input>
+      <ion-input class="inputLog" label="Contraseña" label-placement="floating" fill="outline" type="password" [(ngModel)]="clave" name="pass"></ion-input>
+      <ion-button style="--background: #F1EB90; --color:#F3B664; padding: auto; font-size: 20px; width: 40%; height: auto;" fill="solid" (click)="iniciarSesion()">Ingresar</ion-button>
+    </div>
+    <div style="justify-content: center; align-items: center; display: flex; height: 40%;">
+      <div class="usuarios">
+        <ion-avatar (click)="cargarDatos('admin')">
+          <img src="assets/usuarios/admin.png" />
+        </ion-avatar>
+        <ion-avatar (click)="cargarDatos('usuario')">
+          <img src="assets/usuarios/usuario.png" />
+        </ion-avatar>
+        <ion-avatar (click)="cargarDatos('tester')">
+          <img src="assets/usuarios/invitado.png" />
+        </ion-avatar>
+        <ion-avatar (click)="cargarDatos('invitado')">
+          <img src="assets/usuarios/tester.png" />
+        </ion-avatar>
+        <ion-avatar (click)="cargarDatos('anonimo')">
+          <img src="assets/usuarios/anonimo.png" />
+        </ion-avatar>
+      </div>
+    </div>
+</ion-content>
+<div *ngIf="mostrarSpinner" class="spinner-container">
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <img class="spinner image-spinner" src="assets/logo.png">
+  </div>
+</div>
